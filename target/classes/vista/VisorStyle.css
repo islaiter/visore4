@@ -1,0 +1,42 @@
+.root{
+    -fx-background-image : url("fondo.jpg");
+    -fx-background-size: cover;
+}
+
+.text-field {
+    -fx-focus-color: #009683;
+}
+
+.button {
+    -fx-text-fill: black;
+    -fx-background-color: #659D8C;
+}
+
+#siguiente, #atras, #labelCuentaExist, #numExist, #labelCuenta50000, #num50000, #etiExist, #etiNueva {
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-text-fill: black;
+    -fx-background-color: #446166;
+}
+
+.button:pressed {
+    -fx-text-fill: white;
+    -fx-background-color: #4CAD8D;
+}
+
+.label {
+    -fx-text-fill: black;
+}
+
+.context-menu {
+    -fx-background-color: #A1DAF2;
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+}
+
+.menu-item .label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}

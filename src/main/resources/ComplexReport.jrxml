@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SimpleReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="270a6510-3414-4656-9342-36f6b9e7f696">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="net.sf.jasperreports.chart.pie.ignore.duplicated.key" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="VisorMejorado.xml"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[select * from cuentas]]>
+	</queryString>
+	<field name="NumeroCuenta" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="NumeroCuenta"/>
+		<property name="com.jaspersoft.studio.field.label" value="NumeroCuenta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cuentas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Titular" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Titular"/>
+		<property name="com.jaspersoft.studio.field.label" value="Titular"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cuentas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FechaApertura" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="FechaApertura"/>
+		<property name="com.jaspersoft.studio.field.label" value="FechaApertura"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cuentas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Saldo" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="Saldo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Saldo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cuentas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Nacionalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nacionalidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nacionalidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cuentas"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<sortField name="Nacionalidad"/>
+	<sortField name="FechaApertura"/>
+	<variable name="TotalSaldo" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{Saldo}]]></variableExpression>
+	</variable>
+	<variable name="SubtotalNacionalidad" class="java.lang.Double" resetType="Group" resetGroup="GrupoNacionalidad" calculation="Sum">
+		<variableExpression><![CDATA[$F{Saldo}]]></variableExpression>
+	</variable>
+	<variable name="CountNacionalidad" class="java.lang.Integer" resetType="Group" resetGroup="GrupoNacionalidad" calculation="Count">
+		<variableExpression><![CDATA[$F{Nacionalidad}]]></variableExpression>
+	</variable>
+	<variable name="ContadorMayor1000" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Saldo} >= 1000.00? 1:0]]></variableExpression>
+	</variable>
+	<variable name="ContadorMenor1000" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Saldo}<1000.00 ? 1:0]]></variableExpression>
+	</variable>
+	<variable name="ContadorClientes" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{NumeroCuenta}]]></variableExpression>
+	</variable>
+	<variable name="Contador2" class="java.lang.Integer" calculation="Sum">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="CountMayor1000" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{Saldo} >= 1000 ? 1:0]]></variableExpression>
+	</variable>
+	<group name="GrupoNacionalidad">
+		<groupExpression><![CDATA[$F{Nacionalidad}]]></groupExpression>
+		<groupFooter>
+			<band height="74">
+				<textField>
+					<reportElement x="444" y="0" width="109" height="30" uuid="fd47c075-8946-47f8-8243-5e5275b6f802"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[String.format("%,.2f",$V{SubtotalNacionalidad})+"€"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="222" y="0" width="222" height="30" uuid="46adfde0-ca31-45d7-8f4a-7d4c8d48ddad"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Subtotal nacionalidad "+$F{Nacionalidad}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="222" y="30" width="222" height="30" uuid="86d6b000-5d5c-4da1-a6fa-923f32f67d87"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Promedio nacionalidad" +$F{Nacionalidad}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="444" y="30" width="111" height="30" uuid="bb725a81-c564-44a9-b98f-918236809caf"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[String.format("%,.2f",$V{SubtotalNacionalidad}/$V{CountNacionalidad})+" €"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="340" y="3" width="210" height="64" uuid="88796d59-cd8c-43c1-853f-dd6acfa88258"/>
+				<imageExpression><![CDATA["logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="bcf29663-c4b8-483e-a197-e5f6920fd2a2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Reporte Mejorado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="46" width="200" height="22" uuid="c089ef81-84c2-4243-a7e9-0e0a8992e71a"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[DDI Visor Mejorado]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="9d02e302-57b8-432b-babd-efb2418804ba"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="111" height="15" uuid="3a72fbcb-95df-421e-aaed-d1569b8a4b71">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79bbbea2-6c6a-4244-8774-20e2332215eb"/>
+				</reportElement>
+				<text><![CDATA[NumeroCuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="111" y="19" width="111" height="15" uuid="85d3ae90-3310-4126-89c2-4c208086f777">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f054a7c7-b4ac-4971-a3c1-27988a75cc64"/>
+				</reportElement>
+				<text><![CDATA[Titular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="19" width="111" height="15" uuid="470cc852-69f8-45b0-9da4-129379a23b3a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d32c857e-62b4-4afe-82c8-ebc056822db0"/>
+				</reportElement>
+				<text><![CDATA[FechaApertura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="19" width="111" height="15" uuid="dd293f52-742b-4048-9147-487253f6b349">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="feef6e5d-a364-4d85-8562-27785bb1838c"/>
+				</reportElement>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="19" width="111" height="15" uuid="6cd12048-076e-469c-bf81-86456b946b73">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="53c82e28-b75a-4329-b9da-68fdecca5d54"/>
+				</reportElement>
+				<text><![CDATA[Nacionalidad]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="-1" width="197" height="20" forecolor="#030303" uuid="e16da2cc-f2dd-4b0a-a299-981148326ee6"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="e333df44-9887-45d8-a569-1c4607976a27"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="111" height="15" uuid="a5a94b4b-c4b0-47f4-8140-a2fbd4dbccb7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79bbbea2-6c6a-4244-8774-20e2332215eb"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{NumeroCuenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="111" y="0" width="111" height="15" uuid="aa437f3a-3c7d-4623-a860-f3db5bdbef36">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f054a7c7-b4ac-4971-a3c1-27988a75cc64"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Titular}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement style="Detail" x="222" y="0" width="111" height="15" uuid="8c9cc832-f096-482d-a836-a1c32583ad43">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d32c857e-62b4-4afe-82c8-ebc056822db0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{FechaApertura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;(###0.00)">
+				<reportElement style="Detail" x="333" y="0" width="111" height="15" uuid="8f1746fb-fd7a-4271-ba69-a067c15d2a84">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="feef6e5d-a364-4d85-8562-27785bb1838c"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[String.format("%,.2f",$F{Saldo})+ " €"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="444" y="0" width="111" height="15" uuid="d3b631dd-0f1e-4eb6-907b-3ea7b59f7148">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="53c82e28-b75a-4329-b9da-68fdecca5d54"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Nacionalidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="433509ef-2a34-4797-9cd1-684511ae022d"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="27402784-6be1-4e60-b9c7-c3664ea17454"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="240" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="433" y="0" width="100" height="30" uuid="6b053872-c3e2-4d27-8ab9-edc356500854"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%,.2f",$V{TotalSaldo})+" €"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="330" y="0" width="100" height="30" uuid="4ddab1f7-3a93-42b2-9d50-21cab12680a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Saldo: ]]></text>
+			</staticText>
+			<pie3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="111" y="40" width="200" height="200" uuid="ffc7e4d5-ae37-4198-a82e-555073e3aab5"/>
+					<chartTitle>
+						<font isBold="true"/>
+						<titleExpression><![CDATA["Porcentaje de usuarios con cuentas de mas de 1.000,00 Euros"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset resetType="Report"/>
+					<keyExpression><![CDATA[$F{Saldo} >= 1000.00 ? "Mayor 1000 ":"Menor 1000 "]]></keyExpression>
+					<valueExpression><![CDATA[$F{Saldo} >= 1000.00 ? $V{ContadorMayor1000}:$V{ContadorMenor1000}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot isShowLabels="true" isCircular="true" labelFormat="{0}{2}">
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</summary>
+</jasperReport>

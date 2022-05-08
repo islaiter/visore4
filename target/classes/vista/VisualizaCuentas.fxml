@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="482.0" stylesheets="@VisorStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VisualizaCuentasController">
+   <children>
+      <Label fx:id="etiExist" layoutX="68.0" layoutY="25.0" prefHeight="17.0" prefWidth="360.0" text="VISOR DE LAS CUENTAS EXISTENTES">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="etiNueva" layoutX="80.0" layoutY="33.0" text="VISOR DE LAS CUENTAS NUEVAS" visible="false">
+         <font>
+            <Font name="Century Gothic Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="70.0" text="Número:">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font></Label>
+      <Label layoutX="70.0" layoutY="112.0" text="Titular:">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font></Label>
+      <Label layoutX="70.0" layoutY="154.0" text="Fecha Apertura:">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font></Label>
+      <Label layoutX="71.0" layoutY="196.0" text="Saldo:">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font></Label>
+      <JFXTextField fx:id="numero" editable="false" layoutX="210.0" layoutY="63.0" prefHeight="31.0" prefWidth="203.0" promptText="00000">
+         <font>
+            <Font size="14.0" />
+         </font></JFXTextField>
+      <JFXTextField fx:id="titular" editable="false" layoutX="210.0" layoutY="105.0" prefHeight="31.0" prefWidth="203.0" promptText="Nombre">
+         <font>
+            <Font size="14.0" />
+         </font></JFXTextField>
+      <JFXTextField fx:id="fecha" editable="false" layoutX="210.0" layoutY="147.0" prefHeight="31.0" prefWidth="203.0" promptText="yyyy/MM/dd">
+         <font>
+            <Font size="14.0" />
+         </font></JFXTextField>
+      <JFXTextField fx:id="saldo" editable="false" layoutX="210.0" layoutY="189.0" prefHeight="31.0" prefWidth="203.0" promptText="10000.00">
+         <font>
+            <Font size="14.0" />
+         </font></JFXTextField>
+      <JFXTextField fx:id="nacionalidad" editable="false" layoutX="210.0" layoutY="231.0" prefHeight="31.0" prefWidth="203.0" promptText="Nacionalidad">
+         <font>
+            <Font size="14.0" />
+         </font></JFXTextField>
+      <JFXButton fx:id="siguiente" layoutX="338.0" layoutY="308.0" mnemonicParsing="false" onAction="#accionSiguiente" prefHeight="31.0" prefWidth="75.0" text="&gt;&gt;">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></JFXButton>
+      <JFXButton fx:id="atras" disable="true" layoutX="66.0" layoutY="308.0" mnemonicParsing="false" onAction="#accionAtras" prefHeight="31.0" prefWidth="75.0" text="&lt;&lt;" visible="false">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></JFXButton>
+      <JFXButton fx:id="nueva" disable="true" layoutX="338.0" layoutY="308.0" mnemonicParsing="false" onAction="#accionNueva" prefHeight="31.0" prefWidth="75.0" text="Nueva" visible="false">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></JFXButton>
+      <JFXButton fx:id="aceptar" disable="true" layoutX="338.0" layoutY="308.0" mnemonicParsing="false" onAction="#accionAceptar" prefHeight="31.0" prefWidth="75.0" text="Aceptar" visible="false">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></JFXButton>
+      <JFXButton fx:id="cancelar" disable="true" layoutX="66.0" layoutY="308.0" mnemonicParsing="false" onAction="#accionCancelar" prefHeight="31.0" prefWidth="75.0" text="Cancelar" visible="false">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="labelCuentaExist" layoutX="63.0" layoutY="279.0" text="Cuentas existentes:" />
+      <Label fx:id="numExist" layoutX="177.0" layoutY="279.0" text="0" />
+      <Label fx:id="labelCuenta50000" layoutX="275.0" layoutY="279.0" text="Cuentas +50000:" />
+      <Label fx:id="num50000" layoutX="372.0" layoutY="279.0" text="0" />
+      <Label layoutX="69.0" layoutY="237.0" text="Nacionalidad:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnSimple" layoutX="161.0" layoutY="308.0" mnemonicParsing="false" onAction="#reporteSimple" prefHeight="31.0" prefWidth="75.0" text="Simple">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnComplejo" layoutX="247.0" layoutY="308.0" mnemonicParsing="false" onAction="#reporteComplejo" prefHeight="31.0" prefWidth="75.0" text="Complejo">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="66.0" fitWidth="62.0" layoutX="392.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
